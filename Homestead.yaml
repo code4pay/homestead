@@ -1,0 +1,36 @@
+---
+ip: "192.168.10.20"
+memory: 2048
+cpus: 2
+provider: virtualbox
+name: homesteadupdate
+authorize: ~/.ssh/qa_rsa.pub
+
+keys:
+    - ~/.ssh/qa_rsa
+
+folders:
+    - map: ~/code/wrsc
+      to: /home/vagrant/wrsc
+      type: "nfs"
+
+
+sites:
+    - map: wrsc.test
+      to: /home/vagrant/wrsc/public
+      php: "7.4"
+
+databases:
+    - wrsc
+
+features:
+    - mariadb: true
+    - ohmyzsh: false
+    - webdriver: false
+
+# ports:
+#     - send: 50000
+#       to: 5000
+#     - send: 7777
+#       to: 777
+#       protocol: udp
